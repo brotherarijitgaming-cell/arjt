@@ -1,60 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Certificate - ARJT Technologies</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;600&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0a0e27; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-    .nav { background: rgba(10,14,39,0.95); padding: 20px 40px; border-bottom: 1px solid rgba(102,126,234,0.3); }
-    .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
-    .verify-box { background: rgba(255,255,255,0.05); border: 2px solid #667eea; border-radius: 20px; padding: 50px; max-width: 600px; width: 100%; text-align: center; }
-    h1 { font-family: 'Orbitron', sans-serif; font-size: 32px; margin-bottom: 30px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    input { width: 100%; padding: 18px; background: rgba(255,255,255,0.1); border: 2px solid #667eea; border-radius: 10px; color: white; font-size: 16px; margin: 20px 0; font-family: 'Courier New', monospace; }
-    .btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 18px 50px; border: none; border-radius: 30px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; }
-    .result { margin-top: 40px; padding: 30px; background: rgba(0,255,0,0.1); border: 2px solid #00ff00; border-radius: 15px; display: none; text-align: left; }
-    .result.show { display: block; }
-    .result h3 { color: #00ff00; font-size: 24px; margin-bottom: 20px; text-align: center; }
-    .result p { margin: 10px 0; font-size: 15px; }
-    .result strong { color: #667eea; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARJT | Arijit Mondal - Building Tools for Tomorrow</title>
+    <meta name="description" content="ARJT is a technology initiative by Arijit Mondal, a Class 10 student innovator from West Bengal, building useful web tools and solutions.">
+    <meta name="author" content="Arijit Mondal">
+    <meta name="keywords" content="Arijit Mondal, ARJT, Student Developer, West Bengal, Web Tools, Young Innovator">
+    
+    <meta property="og:title" content="ARJT | Founded by Arijit Mondal">
+    <meta property="og:description" content="Technology initiative building useful tools for students and creators.">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0a0a0f;
+            --card: #111118;
+            --accent: #6366f1;
+            --accent-glow: #818cf8;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: #1e293b;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(129, 140, 248, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* NEW POWERFUL LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-glow);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        
+        .founder-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .tool-card p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        .tool-demo {
+            margin-top: 20px;
+        }
+        
+        .tool-demo input, .tool-demo textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+        
+        .tool-demo button {
+            width: 100%;
+        }
+        
+        .output {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        /* About */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+        }
+        
+        .about-content h3 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--accent-glow);
+        }
+        
+        .about-content p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-dim);
+        }
+        
+        footer strong {
+            color: var(--text);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .about-content {
+                padding: 24px;
+            }
+            .logo-text {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo">ARJT TECHNOLOGIES</div>
-  </nav>
-  <div class="container">
-    <div class="verify-box">
-      <h1>CERTIFICATE VERIFICATION</h1>
-      <p style="color: #b8b8d1; margin-bottom: 30px;">Enter Certificate ID to verify authenticity</p>
-      <input type="text" id="certId" placeholder="ARJT/AI/2026/AM001" value="ARJT/AI/2026/AM001">
-      <button class="btn" onclick="verify()">VERIFY CERTIFICATE</button>
-      <div class="result" id="result">
-        <h3>✓ CERTIFICATE VERIFIED</h3>
-        <p><strong>Certificate Holder:</strong> Arijit Mondal</p>
-        <p><strong>Designation:</strong> Founder & CEO, Lead AI Engineer</p>
-        <p><strong>Certification:</strong> AI Engineer - Level III</p>
-        <p><strong>Issue Date:</strong> 30 June 2026</p>
-        <p><strong>Status:</strong> <span style="color: #00ff00;">ACTIVE & VALID</span></p>
-        <p><strong>Issuing Authority:</strong> ARJT Technologies Pvt. Ltd.</p>
-        <p style="margin-top: 20px; color: #b8b8d1; font-size: 13px; text-align: center;">This certificate is officially recognized by ARJT Technologies.</p>
-      </div>
-    </div>
-  </div>
-  <script>
-    function verify() {
-      const id = document.getElementById('certId').value;
-      const result = document.getElementById('result');
-      if(id === 'ARJT/AI/2026/AM001') {
-        result.classList.add('show');
-      } else {
-        alert('Certificate ID not found');
-      }
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- A letter shape + circuit lines for "tech" feel -->
+                        <path d="M20 4L4 36H12L20 20L28 36H36L20 4Z" fill="url(#logoGradient)"/>
+                        <circle cx="20" cy="16" r="2" fill="#0a0a0f"/>
+                        <path d="M14 28H26" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">ARJT</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="founder-badge">
+                    <div style="width:32px;height:32px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;">AM</div>
+                    <span>Founded by <strong>Arijit Mondal</strong></span>
+                </div>
+                <h1>Building Tools for <span>Tomorrow</span></h1>
+                <p>ARJT is a technology initiative focused on creating simple, powerful web tools that solve real problems for students, creators, and developers.</p>
+                <a href="#tools" class="btn">Explore Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <div class="container">
+            <h2 class="section-title">Featured Tools</h2>
+            <p class="section-subtitle">Every tool here is built from scratch. No copy-paste. Use them directly on this page.</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <h3>Smart Link Shortener</h3>
+                    <p>Long URL কে ছোট করো + QR code বানাও। Data কোথাও save হয় না।</p>
+                    <div class="tool-demo">
+                        <input type="url" id="longUrl" placeholder="https://paste-your-long-url-here.com">
+                        <button class="btn" onclick="shortenUrl()">Generate</button>
+                        <div id="shortUrlOutput" class="output" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <h3>Text Case Converter</h3>
+                    <p>যেকোনো লেখা UPPERCASE, lowercase, Title Case এ convert করো এক ক্লিকে।</p>
+                    <div class="tool-demo">
+                        <textarea id="caseInput" rows="3" placeholder="Type or paste text here..."></textarea>
+                        <button class="btn" onclick="convertCase('upper')">UPPERCASE</button>
+                        <button class="btn" onclick="convertCase('lower')" style="margin-top:8px;">lowercase</button>
+                        <button class="btn" onclick="convertCase('title')" style="margin-top:8px;">Title Case</button>
+                        <div id="caseOutput" class="output" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h3>Color Palette Generator</h3>
+                    <p>একটা base color দাও, সুন্দর matching palette পেয়ে যাবে design এর জন্য।</p>
+                    <div class="tool-demo">
+                        <input type="color" id="baseColor" value="#6366f1" style="height:50px;">
+                        <button class="btn" onclick="generatePalette()">Generate Palette</button>
+                        <div id="paletteOutput" style="display:none;margin-top:12px;display:flex;gap:8px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About ARJT</h2>
+            <div class="about-content">
+                <h3>The Mission</h3>
+                <p>ARJT started in 2026 with a simple idea: technology should be useful, not complicated. </p>
+                <p>My name is <strong>Arijit Mondal</strong>. I'm a Class 10 student from West Bengal, India. I believe age doesn't define what you can build. This entire website, including all the tools, is coded and designed by me in a single HTML file to prove that point.</p>
+                <p>ARJT will keep launching micro-tools that help students save time, creators work faster, and anyone get things done without ads, logins, or nonsense.</p>
+                <h3 style="margin-top:40px;">Why "ARJT"?</h3>
+                <p>It's derived from my name, ARiJiT. But it also stands for: <strong>A</strong>dvanced <strong>R</strong>esources for <strong>J</strong>unior <strong>T</strong>echnologists.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have an idea for a tool? Want to collaborate? Reach out.</p>
+            <div style="text-align:center;">
+                <p style="font-size:20px;margin-bottom:24px;">Email: <strong>arijitmondal.arjt@gmail.com</strong></p>
+                <p style="color:var(--text-dim);">Note: Change this to your actual email</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ARJT. Founded and developed by <strong>Arijit Mondal</strong>.</p>
+            <p style="margin-top:8px;font-size:14px;">Built with HTML, CSS & JavaScript in a single file.</p>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ARJT",
+      "url": "https://arjt.dev",
+      "logo": "https://arjt.dev/logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Arijit Mondal",
+        "jobTitle": "Founder & CEO",
+        "description": "Class 10 Student Developer and Innovator from West Bengal, India"
+      },
+      "description": "Technology initiative building useful web tools"
     }
-    window.onload = () => verify();
-  </script>
+    </script>
+
+    <script>
+        function shortenUrl() {
+            const longUrl = document.getElementById('longUrl').value;
+            const output = document.getElementById('shortUrlOutput');
+            if (!longUrl) {
+                alert('Please paste a URL first');
+                return;
+            }
+            const hash = btoa(longUrl).substring(0, 6);
+            const shortUrl = `https://arjt.dev/s/${hash}`;
+            output.innerHTML = `Short Link: <a href="${longUrl}" target="_blank" style="color:var(--accent-glow)">${shortUrl}</a><br><br>QR Code: <div id="qrcode" style="margin-top:8px;"></div>`;
+            output.style.display = 'block';
+            document.getElementById('qrcode').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(longUrl)}" alt="QR Code">`;
+        }
+
+        function convertCase(type) {
+            const input = document.getElementById('caseInput').value;
+            const output = document.getElementById('caseOutput');
+            if (!input) {
+                alert('Please type some text first');
+                return;
+            }
+            let result = '';
+            if (type === 'upper') result = input.toUpperCase();
+            if (type === 'lower') result = input.toLowerCase();
+            if (type === 'title') result = input.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            output.textContent = result;
+            output.style.display = 'block';
+        }
+
+        function generatePalette() {
+            const base = document.getElementById('baseColor').value;
+            const output = document.getElementById('paletteOutput');
+            output.innerHTML = '';
+            output.style.display = 'flex';
+            
+            const colors = [base, adjustBrightness(base, 20), adjustBrightness(base, -20), adjustBrightness(base, 40), adjustBrightness(base, -40)];
+            colors.forEach(color => {
+                const div = document.createElement('div');
+                div.style.cssText = `flex:1;height:60px;background:${color};border-radius:8px;cursor:pointer;`;
+                div.title = `Click to copy: ${color}`;
+                div.onclick = () => {
+                    navigator.clipboard.writeText(color);
+                    div.style.outline = '2px solid white';
+                    setTimeout(() => div.style.outline = 'none', 500);
+                };
+                output.appendChild(div);
+            });
+        }
+        
+        function adjustBrightness(hex, percent) {
+            const num = parseInt(hex.replace('#', ''), 16);
+            const r = Math.min(255, Math.max(0, (num >> 16) + percent));
+            const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + percent));
+            const b = Math.min(255, Math.max(0, (num & 0x0000FF) + percent));
+            return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+        }
+    </script>
 </body>
-</html>
+  </html>
