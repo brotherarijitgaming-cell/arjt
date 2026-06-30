@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Certificate - ARJT Technologies</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #0a0e27; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
+    .nav { background: rgba(10,14,39,0.95); padding: 20px 40px; border-bottom: 1px solid rgba(102,126,234,0.3); }
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .verify-box { background: rgba(255,255,255,0.05); border: 2px solid #667eea; border-radius: 20px; padding: 50px; max-width: 600px; width: 100%; text-align: center; }
+    h1 { font-family: 'Orbitron', sans-serif; font-size: 32px; margin-bottom: 30px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    input { width: 100%; padding: 18px; background: rgba(255,255,255,0.1); border: 2px solid #667eea; border-radius: 10px; color: white; font-size: 16px; margin: 20px 0; font-family: 'Courier New', monospace; }
+    .btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 18px 50px; border: none; border-radius: 30px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; }
+    .result { margin-top: 40px; padding: 30px; background: rgba(0,255,0,0.1); border: 2px solid #00ff00; border-radius: 15px; display: none; text-align: left; }
+    .result.show { display: block; }
+    .result h3 { color: #00ff00; font-size: 24px; margin-bottom: 20px; text-align: center; }
+    .result p { margin: 10px 0; font-size: 15px; }
+    .result strong { color: #667eea; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">ARJT TECHNOLOGIES</div>
+  </nav>
+  <div class="container">
+    <div class="verify-box">
+      <h1>CERTIFICATE VERIFICATION</h1>
+      <p style="color: #b8b8d1; margin-bottom: 30px;">Enter Certificate ID to verify authenticity</p>
+      <input type="text" id="certId" placeholder="ARJT/AI/2026/AM001" value="ARJT/AI/2026/AM001">
+      <button class="btn" onclick="verify()">VERIFY CERTIFICATE</button>
+      <div class="result" id="result">
+        <h3>✓ CERTIFICATE VERIFIED</h3>
+        <p><strong>Certificate Holder:</strong> Arijit Mondal</p>
+        <p><strong>Designation:</strong> Founder & CEO, Lead AI Engineer</p>
+        <p><strong>Certification:</strong> AI Engineer - Level III</p>
+        <p><strong>Issue Date:</strong> 30 June 2026</p>
+        <p><strong>Status:</strong> <span style="color: #00ff00;">ACTIVE & VALID</span></p>
+        <p><strong>Issuing Authority:</strong> ARJT Technologies Pvt. Ltd.</p>
+        <p style="margin-top: 20px; color: #b8b8d1; font-size: 13px; text-align: center;">This certificate is officially recognized by ARJT Technologies.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function verify() {
+      const id = document.getElementById('certId').value;
+      const result = document.getElementById('result');
+      if(id === 'ARJT/AI/2026/AM001') {
+        result.classList.add('show');
+      } else {
+        alert('Certificate ID not found');
+      }
+    }
+    window.onload = () => verify();
+  </script>
+</body>
+</html>
