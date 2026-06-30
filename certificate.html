@@ -2,97 +2,381 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>ARJT Technologies - Certificate</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0a0e27; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-    .certificate { width: 1000px; height: 750px; background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%); position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); overflow: hidden; }
-    .border { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: 8px solid transparent; background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #4facfe) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: rotate 4s linear infinite; }
-    @keyframes rotate { to { filter: hue-rotate(360deg); } }
-    .content { position: relative; z-index: 1; height: 100%; padding: 50px 70px; display: flex; flex-direction: column; }
-    .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 30px; }
-    .logo { font-family: 'Orbitron', sans-serif; font-size: 56px; font-weight: 900; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 6px; }
-    .tagline { font-size: 11px; color: #666; letter-spacing: 3px; margin-top: 5px; }
-    .cert-no { text-align: right; font-size: 12px; color: #999; font-family: 'Courier New', monospace; }
-    .cert-no a { color: #667eea; text-decoration: none; font-weight: bold; }
-    .title-section { text-align: center; margin: 20px 0 30px 0; }
-    .cert-title { font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 700; color: #1a1a2e; letter-spacing: 3px; margin-bottom: 8px; }
-    .cert-subtitle { font-size: 14px; color: #667eea; letter-spacing: 2px; }
-    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .presented { text-align: center; font-size: 16px; color: #666; margin-bottom: 20px; }
-    .name { font-family: 'Orbitron', sans-serif; font-size: 52px; font-weight: 900; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 15px 0; text-shadow: 0 0 30px rgba(102,126,234,0.3); }
-    .dob { text-align: center; font-size: 15px; color: #888; margin-bottom: 30px; }
-    .description { text-align: center; font-size: 15px; line-height: 1.8; color: #444; max-width: 700px; margin: 0 auto 30px; }
-    .badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0; }
-    .badge { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 8px 18px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-    .footer { display: flex; justify-content: space-between; align-items: end; margin-top: auto; padding-top: 20px; }
-    .sign-box { text-align: center; }
-    .sign-line { width: 180px; height: 2px; background: #333; margin: 8px auto; }
-    .sign-text { font-size: 11px; color: #666; line-height: 1.4; }
-    .hologram { width: 100px; height: 100px; border: 4px solid #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(102,126,234,0.1), transparent); position: relative; }
-    .hologram::before { content: 'ARJT'; font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; color: #667eea; }
-    .hologram::after { content: ''; position: absolute; width: 120%; height: 120%; border: 2px solid rgba(102,126,234,0.3); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.5; } }
-    @media print { body { background: white; } .certificate { box-shadow: none; } }
+    body { 
+      background: #0a0e27; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .certificate-wrapper {
+      width: 100%;
+      max-width: 1000px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .certificate { 
+      width: 1000px; 
+      height: 750px; 
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%); 
+      position: relative; 
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6); 
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    
+    /* Mobile এর জন্য Auto Scale */
+    @media (max-width: 1040px) {
+      .certificate {
+        transform: scale(0.9);
+        transform-origin: top center;
+        margin-bottom: -75px;
+      }
+    }
+    
+    @media (max-width: 940px) {
+      .certificate {
+        transform: scale(0.8);
+        margin-bottom: -150px;
+      }
+    }
+    
+    @media (max-width: 840px) {
+      .certificate {
+        transform: scale(0.7);
+        margin-bottom: -225px;
+      }
+    }
+    
+    @media (max-width: 740px) {
+      .certificate {
+        transform: scale(0.6);
+        margin-bottom: -300px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .certificate {
+        transform: scale(0.5);
+        margin-bottom: -375px;
+      }
+    }
+    
+    @media (max-width: 540px) {
+      .certificate {
+        transform: scale(0.4);
+        margin-bottom: -450px;
+      }
+    }
+    
+    @media (max-width: 440px) {
+      .certificate {
+        transform: scale(0.35);
+        margin-bottom: -487px;
+      }
+    }
+    
+    .border { 
+      position: absolute; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      border: 8px solid transparent; 
+      background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #4facfe) border-box; 
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); 
+      -webkit-mask-composite: xor; 
+      mask-composite: exclude; 
+      animation: rotate 4s linear infinite; 
+    }
+    
+    @keyframes rotate { 
+      to { filter: hue-rotate(360deg); } 
+    }
+    
+    .content { 
+      position: relative; 
+      z-index: 1; 
+      height: 100%; 
+      padding: 50px 70px; 
+      display: flex; 
+      flex-direction: column; 
+    }
+    
+    .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: start; 
+      margin-bottom: 30px; 
+    }
+    
+    .logo { 
+      font-family: 'Orbitron', sans-serif; 
+      font-size: 56px; 
+      font-weight: 900; 
+      background: linear-gradient(135deg, #667eea, #764ba2); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      letter-spacing: 6px; 
+    }
+    
+    .tagline { 
+      font-size: 11px; 
+      color: #666; 
+      letter-spacing: 3px; 
+      margin-top: 5px; 
+    }
+    
+    .cert-no { 
+      text-align: right; 
+      font-size: 12px; 
+      color: #999; 
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+    }
+    
+    .cert-no a { 
+      color: #667eea; 
+      text-decoration: none; 
+      font-weight: bold; 
+    }
+    
+    .title-section { 
+      text-align: center; 
+      margin: 20px 0 30px 0; 
+    }
+    
+    .cert-title { 
+      font-family: 'Orbitron', sans-serif; 
+      font-size: 32px; 
+      font-weight: 700; 
+      color: #1a1a2e; 
+      letter-spacing: 3px; 
+      margin-bottom: 8px; 
+    }
+    
+    .cert-subtitle { 
+      font-size: 14px; 
+      color: #667eea; 
+      letter-spacing: 2px; 
+    }
+    
+    .body { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+    }
+    
+    .presented { 
+      text-align: center; 
+      font-size: 16px; 
+      color: #666; 
+      margin-bottom: 20px; 
+    }
+    
+    .name { 
+      font-family: 'Orbitron', sans-serif; 
+      font-size: 52px; 
+      font-weight: 900; 
+      text-align: center; 
+      background: linear-gradient(135deg, #667eea, #764ba2); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      margin: 15px 0; 
+      text-shadow: 0 0 30px rgba(102,126,234,0.3);
+      white-space: nowrap;
+    }
+    
+    .dob { 
+      text-align: center; 
+      font-size: 15px; 
+      color: #888; 
+      margin-bottom: 30px;
+      white-space: nowrap;
+    }
+    
+    .description { 
+      text-align: center; 
+      font-size: 15px; 
+      line-height: 1.8; 
+      color: #444; 
+      max-width: 700px; 
+      margin: 0 auto 30px; 
+    }
+    
+    .badges { 
+      display: flex; 
+      justify-content: center; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      margin: 20px 0; 
+    }
+    
+    .badge { 
+      background: linear-gradient(135deg, #667eea, #764ba2); 
+      color: white; 
+      padding: 8px 18px; 
+      border-radius: 20px; 
+      font-size: 12px; 
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .footer { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: end; 
+      margin-top: auto; 
+      padding-top: 20px; 
+    }
+    
+    .sign-box { 
+      text-align: center; 
+    }
+    
+    .sign-line { 
+      width: 180px; 
+      height: 2px; 
+      background: #333; 
+      margin: 8px auto; 
+    }
+    
+    .sign-text { 
+      font-size: 11px; 
+      color: #666; 
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+    
+    .hologram { 
+      width: 100px; 
+      height: 100px; 
+      border: 4px solid #667eea; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      background: radial-gradient(circle, rgba(102,126,234,0.1), transparent); 
+      position: relative; 
+    }
+    
+    .hologram::before { 
+      content: 'ARJT'; 
+      font-family: 'Orbitron', sans-serif; 
+      font-size: 20px; 
+      font-weight: 900; 
+      color: #667eea; 
+    }
+    
+    .hologram::after { 
+      content: ''; 
+      position: absolute; 
+      width: 120%; 
+      height: 120%; 
+      border: 2px solid rgba(102,126,234,0.3); 
+      border-radius: 50%; 
+      animation: pulse 2s ease-in-out infinite; 
+    }
+    
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); opacity: 1; } 
+      50% { transform: scale(1.1); opacity: 0.5; } 
+    }
+    
+    .download-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(102,126,234,0.9);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 12px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    @media (min-width: 1041px) {
+      .download-hint { display: none; }
+    }
+    
+    @media print { 
+      body { background: white; } 
+      .certificate { 
+        box-shadow: none;
+        transform: scale(1) !important;
+        margin: 0 !important;
+      }
+      .download-hint { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="certificate">
-    <div class="border"></div>
-    <div class="content">
-      <div class="header">
-        <div class="logo-box">
-          <div class="logo">ARJT</div>
-          <div class="tagline">TECHNOLOGIES PVT. LTD.</div>
-        </div>
-        <div class="cert-no">
-          CERT ID: ARJT/AI/2026/AM001<br>
-          VERIFY: <a href="verify.html">arjt.tech/verify</a>
-        </div>
-      </div>
-      <div class="title-section">
-        <div class="cert-title">CERTIFICATE OF EXCELLENCE</div>
-        <div class="cert-subtitle">ARTIFICIAL INTELLIGENCE ENGINEERING</div>
-      </div>
-      <div class="body">
-        <div class="presented">THIS CERTIFICATE IS PROUDLY PRESENTED TO</div>
-        <div class="name">ARIJIT MONDAL</div>
-        <div class="dob">Born: 22nd December 2010</div>
-        <div class="description">
-          For demonstrating exceptional proficiency in <strong>Artificial Intelligence, Machine Learning, and Neural Network Architecture</strong>.<br>
-          Recognized as <strong>Lead AI Engineer</strong> at ARJT Technologies for outstanding contributions to the field of AI Research & Development.
-        </div>
-        <div class="badges">
-          <span class="badge">Python Expert</span>
-          <span class="badge">Deep Learning</span>
-          <span class="badge">TensorFlow</span>
-          <span class="badge">PyTorch</span>
-          <span class="badge">LLM Architecture</span>
-          <span class="badge">Computer Vision</span>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="sign-box">
-          <div class="sign-line"></div>
-          <div class="sign-text">
-            <strong>ARIJIT MONDAL</strong><br>
-            Founder & CEO<br>
-            ARJT Technologies
+  <div class="certificate-wrapper">
+    <div class="certificate">
+      <div class="border"></div>
+      <div class="content">
+        <div class="header">
+          <div class="logo-box">
+            <div class="logo">ARJT</div>
+            <div class="tagline">TECHNOLOGIES PVT. LTD.</div>
+          </div>
+          <div class="cert-no">
+            CERT ID: ARJT/AI/2026/AM001<br>
+            VERIFY: <a href="verify.html">arjt.tech/verify</a>
           </div>
         </div>
-        <div class="hologram"></div>
-        <div class="sign-box">
-          <div class="sign-line"></div>
-          <div class="sign-text">
-            <strong>DATE OF ISSUE</strong><br>
-            30th June 2026<br>
-            Kolkata, India
+        <div class="title-section">
+          <div class="cert-title">CERTIFICATE OF EXCELLENCE</div>
+          <div class="cert-subtitle">ARTIFICIAL INTELLIGENCE ENGINEERING</div>
+        </div>
+        <div class="body">
+          <div class="presented">THIS CERTIFICATE IS PROUDLY PRESENTED TO</div>
+          <div class="name">ARIJIT MONDAL</div>
+          <div class="dob">Born: 22nd December 2010</div>
+          <div class="description">
+            For demonstrating exceptional proficiency in <strong>Artificial Intelligence, Machine Learning, and Neural Network Architecture</strong>.<br>
+            Recognized as <strong>Lead AI Engineer</strong> at ARJT Technologies for outstanding contributions to the field of AI Research & Development.
+          </div>
+          <div class="badges">
+            <span class="badge">Python Expert</span>
+            <span class="badge">Deep Learning</span>
+            <span class="badge">TensorFlow</span>
+            <span class="badge">PyTorch</span>
+            <span class="badge">LLM Architecture</span>
+            <span class="badge">Computer Vision</span>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="sign-box">
+            <div class="sign-line"></div>
+            <div class="sign-text">
+              <strong>ARIJIT MONDAL</strong><br>
+              Founder & CEO<br>
+              ARJT Technologies
+            </div>
+          </div>
+          <div class="hologram"></div>
+          <div class="sign-box">
+            <div class="sign-line"></div>
+            <div class="sign-text">
+              <strong>DATE OF ISSUE</strong><br>
+              30th June 2026<br>
+              Kolkata, India
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="download-hint">Pinch to Zoom • Scroll to View Full Certificate</div>
 </body>
 </html>
